@@ -48,7 +48,7 @@ export default async ({ req, res, log, error }: Context) => {
           const new_user = {
             memory: {},
             name: req.body.message.from.username,
-            chats: [{ channel: 'telegram', chat_id: req.body.message.chat.id }],
+            chats: [{ channel: 'telegram', chat_id: String(req.body.message.chat.id) }],
           };
           log(`write new user`);
           log(JSON.stringify(new_user));
