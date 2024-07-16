@@ -69,8 +69,9 @@ export default async ({ req, res, log, error }: Context) => {
             new_user
           );
           log(`user created`);
-          bot.telegram.sendMessage(req.body.message.chat.id, 'Welcome to Giulia BOT');
+          bot.telegram.sendMessage(String(req.body.message.chat.id), 'Welcome to Giulia BOT');
         } else {
+          bot.telegram.sendMessage(String(req.body.message.chat.id), 'Welcome Back to Giulia BOT');
           log(`user already in database`);
         }
         break;
