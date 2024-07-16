@@ -2,11 +2,14 @@ import { Client } from 'node-appwrite';
 
 export default async ({ req, res, log, error }) => {
 
+  const bot = new Telegraf('7378059092:AAGEZRT8290zit3tWR6ZjCCPn-AvKPqcDDU');
+
   switch (req.body.message.text) {
-    case 'bot_command': log('Inviato comando al bot');
+    case '/start': log('Inviato comando al bot');
+      bot.telegram.sendMessage(req.body.message.chat.id, 'Benvenuto');
     break;
     default:
-      log(req.body.message.text);
+      bot.telegram.sendMessage(req.body.message.chat.id, req.body.message.text);
   }
 
   
