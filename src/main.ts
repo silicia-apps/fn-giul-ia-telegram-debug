@@ -20,7 +20,7 @@ type Context = {
 
 export default async ({ req, res, log, error }: Context) => {
 
-  const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
+  const bot = new Telegraf(process.env.TELEGRAM_TOKEN!);
 
   switch (req.body.message.text) {
     case '/start': log('Start Telegram Bot');
