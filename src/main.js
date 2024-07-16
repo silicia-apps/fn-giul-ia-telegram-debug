@@ -1,5 +1,6 @@
 import { Client } from 'node-appwrite';
-import { Telegraf } from 'telegraf'
+import { Telegraf } from 'telegraf';
+import { message } from 'telegraf/filters'
 
 export default async ({ req, res, log, error }) => {
 
