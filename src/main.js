@@ -2,7 +2,7 @@ import { Client } from 'node-appwrite';
 
 export default async ({ req, res, log, error }) => {
 
-  switch (req.body.entities.type) {
+  switch (req.body.message.entities.type) {
     case 'bot_command': log('Inviato comando al bot');
     break;
     default:
