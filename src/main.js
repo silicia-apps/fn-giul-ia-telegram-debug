@@ -2,12 +2,12 @@ import { Client } from 'node-appwrite';
 
 export default async ({ req, res, log, error }) => {
 
-  /*switch (req.body.entities.type) {
-    'bot_command': log('Inviato comando al bot');
+  switch (req.body.entities.type) {
+    case 'bot_command': log('Inviato comando al bot');
     break;
     default:
       log('messaggio');
-  }*/
+  }
 
   
   // The `req` object contains the request data
