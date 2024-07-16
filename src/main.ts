@@ -42,7 +42,6 @@ export default async ({ req, res, log, error }: Context) => {
     switch (req.body.message.text) {
       case '/start':
         log('Registrazione Bot');
-        bot.telegram.sendMessage(req.body.message.chat.id, 'Benvenuto');
         if (chat.total === 0) {
           log('User not present');
           const new_user = {
@@ -70,6 +69,7 @@ export default async ({ req, res, log, error }: Context) => {
             new_user
           );
           log(`user created`);
+          bot.telegram.sendMessage(req.body.message.chat.id, 'Welcome to Giulia BOT');
         } else {
           log(`user already in database`);
         }
