@@ -34,7 +34,7 @@ export default async ({ req, res, log, error }: Context) => {
       process.env.APPWRITE_TABLE_CHATS_ID!,
       [
         Query.equal('channel', 'telegram'),
-        Query.equal('chat_id', req.body.message.chat.id),
+        Query.equal('chat_id', String(req.body.message.chat.id)),
         Query.limit(1),
       ]
     );
