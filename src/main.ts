@@ -2,7 +2,7 @@ import { Client } from 'node-appwrite';
 import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters'
 
-import * as process from './env.js';
+//import * as process from './env.js';
 
 function log(text: string) {
   console.log(text);
@@ -24,7 +24,7 @@ export default async ({ req, res, log, error }: Context) => {
 
   switch (req.body.message.text) {
     case '/start': log('Start Telegram Bot');
-      
+
       bot.telegram.sendMessage(req.body.message.chat.id, 'Benvenuto');
     break;
     default:
