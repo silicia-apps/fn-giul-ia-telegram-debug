@@ -19,7 +19,7 @@ type Context = {
 };
 
 export default async ({ req, res, log, error }: Context) => {
-  //try {
+  try {
     log(req.body.message);
     log('connect to Telegram Bot');
     const bot = new Telegraf(process.env.TELEGRAM_TOKEN!);
@@ -45,8 +45,8 @@ export default async ({ req, res, log, error }: Context) => {
         if (chat.total === 0) {
           log('User not present');
           const new_user = {
-            emotionalState: { fear: 0 },
-            memory: [
+            emotional_state: { fear: 0 },
+            memories: [
               { name: 'first_name_user', value: req.body.message.from.first_name },
               { name: 'last_name_user', value: req.body.message.from.last_name },
               { name: 'prefered_language_user', value: req.body.message.from.language_code },
@@ -81,7 +81,7 @@ export default async ({ req, res, log, error }: Context) => {
           process.env.APPWRITE_TABLE_MESSAGES_ID!,
           ID.unique(),
           {
-            chat_id: String(req.body.message.chat.id),
+            chat: String(req.body.message.chat.id),
             date: new Date().toISOString(),
             message: req.body.message.text
           }
@@ -89,21 +89,10 @@ export default async ({ req, res, log, error }: Context) => {
         console.log(req.body);
     }
 
-    // The `req` object contains the request data
     if (req.method === 'GET') {
-      // Send a response with the res object helpers
-      // `res.send()` dispatches a string back to the client
-      return res.send('Hello, World!');
+      return res.send('Silicia - Giulia BOT - telegram gateway');
     }
-
-    // `res.json()` is a handy helper for sending JSON
-    return res.json({
-      motto: 'Build like a team of hundreds_',
-      learn: 'https://appwrite.io/docs',
-      connect: 'https://appwrite.io/discord',
-      getInspired: 'https://builtwith.appwrite.io',
-    });
-  /*} catch (e: any) {
-    error(e);
-  }*/
+  } catch (e: any) {
+    error(JSON.stringify(e));
+  }
 };
