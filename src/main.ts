@@ -37,6 +37,7 @@ export default async ({ req, res, log, error }: Context) => {
         Query.limit(1),
       ]
     );
+    log(req.body.message);
     switch (req.body.message.text) {
       case '/start':
         log('Registrazione Bot');
