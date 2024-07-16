@@ -51,7 +51,7 @@ export default async ({ req, res, log, error }: Context) => {
           log (`write new user ${new_user}`);
           await datastore.createDocument(
             process.env.APPWRITE_DATABASE_ID!,
-            process.env.APPWRITE_TABLE_IDENTITIES_ID,
+            process.env.APPWRITE_TABLE_IDENTITIES_ID!,
             ID.unique(),
             new_user,
           );
