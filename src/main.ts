@@ -20,6 +20,7 @@ type Context = {
 
 export default async ({ req, res, log, error }: Context) => {
   try {
+    log(`input : ${req.body.message}`);
     log('connect to Telegram Bot');
     const bot = new Telegraf(process.env.TELEGRAM_TOKEN!);
     log('connect to appwrite api');
@@ -37,7 +38,7 @@ export default async ({ req, res, log, error }: Context) => {
         Query.limit(1),
       ]
     );
-    log(req.body.message);
+    
     switch (req.body.message.text) {
       case '/start':
         log('Registrazione Bot');
