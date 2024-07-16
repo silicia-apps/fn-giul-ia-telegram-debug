@@ -2,12 +2,29 @@ import { Client } from 'node-appwrite';
 import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters'
 
-export default async ({ req, res, log, error }) => {
+import * as process from './env.js';
 
-  const bot = new Telegraf('7378059092:AAGEZRT8290zit3tWR6ZjCCPn-AvKPqcDDU');
+function log(text: string) {
+  console.log(text);
+}
+function error(text: string) {
+  console.error(text);
+}
+
+type Context = {
+  req: any;
+  res: any;
+  log: (msg: string) => void;
+  error: (msg: string) => void;
+};
+
+export default async ({ req, res, log, error }: Context) => {
+
+  const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
 
   switch (req.body.message.text) {
-    case '/start': log('Inviato comando al bot');
+    case '/start': log('Start Telegram Bot');
+      
       bot.telegram.sendMessage(req.body.message.chat.id, 'Benvenuto');
     break;
     default:

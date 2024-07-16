@@ -1,3 +1,4 @@
+src/environment.js
 # Logs
 logs
 *.log
@@ -128,6 +129,4 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# Directory used by Appwrite CLI for local development
-.appwrite
+env.js
