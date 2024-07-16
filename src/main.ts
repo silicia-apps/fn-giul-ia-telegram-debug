@@ -47,10 +47,10 @@ export default async ({ req, res, log, error }: Context) => {
           const new_user = {
             emotionalState: { fear: 0 },
             memory: [
-              { name: 'first_name_user', value: req.body.from.first_name },
-              { name: 'last_name_user', value: req.body.from.last_name },
-              { name: 'prefered_language_user', value: req.body.from.language_code },
-              { name: 'username_user', value: req.body.from.username }
+              { name: 'first_name_user', value: req.body.message.from.first_name },
+              { name: 'last_name_user', value: req.body.message.from.last_name },
+              { name: 'prefered_language_user', value: req.body.message.from.language_code },
+              { name: 'username_user', value: req.body.message.from.username }
             ],
             name: req.body.message.from.username,
             chats: [
