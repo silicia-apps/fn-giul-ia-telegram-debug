@@ -92,6 +92,7 @@ export default async ({ req, res, log, error }: Context) => {
     if (req.method === 'GET') {
       return res.send('Silicia - Giulia BOT - telegram gateway');
     }
+    return res.json({ 'app': 'giulia-bot'});
   } catch (e: any) {
     error(JSON.stringify(e));
   }
