@@ -38,28 +38,29 @@ export default async ({ req, res, log, error }: Context) => {
         Query.limit(1),
       ]
     );
-    
+
     switch (req.body.message.text) {
       case '/start':
         log('Registrazione Bot');
-        bot.telegram.sendMessage(req.body.message.chat.id, 'Benvenuto');      
+        bot.telegram.sendMessage(req.body.message.chat.id, 'Benvenuto');
         if (chat.total === 0) {
           log('User not present');
           const new_user = {
             memory: {},
             name: req.body.message.from.username,
-            chats: { channel: 'telegram' , 'chat_id': req.body.message.chat.id}
-          }
-          log (`write new user ${new_user}`);
+            chats: [{ channel: 'telegram', chat_id: req.body.message.chat.id }],
+          };
+          log(`write new user`);
+          log(JSON.stringify(new_user));
           await datastore.createDocument(
             process.env.APPWRITE_DATABASE_ID!,
             process.env.APPWRITE_TABLE_IDENTITIES_ID!,
             ID.unique(),
-            new_user,
+            new_user
           );
-          log (`user created`);
+          log(`user created`);
         } else {
-          log (`user already in database`);
+          log(`user already in database`);
         }
         break;
       default:
