@@ -47,10 +47,19 @@ export default async ({ req, res, log, error }: Context) => {
           const new_user = {
             emotional_state: { fear: 0 },
             memories: [
-              { name: 'first_name_user', value: req.body.message.from.first_name },
-              { name: 'last_name_user', value: req.body.message.from.last_name },
-              { name: 'prefered_language_user', value: req.body.message.from.language_code },
-              { name: 'username_user', value: req.body.message.from.username }
+              {
+                name: 'first_name_user',
+                value: req.body.message.from.first_name,
+              },
+              {
+                name: 'last_name_user',
+                value: req.body.message.from.last_name,
+              },
+              {
+                name: 'prefered_language_user',
+                value: req.body.message.from.language_code,
+              },
+              { name: 'username_user', value: req.body.message.from.username },
             ],
             name: req.body.message.from.username,
             chats: [
@@ -69,29 +78,43 @@ export default async ({ req, res, log, error }: Context) => {
             new_user
           );
           log(`user created`);
-          bot.telegram.sendMessage(String(req.body.message.chat.id), 'Welcome to Giulia BOT');
+          bot.telegram.sendMessage(
+            String(req.body.message.chat.id),
+            'Welcome to Giulia BOT'
+          );
         } else {
-          bot.telegram.sendMessage(String(req.body.message.chat.id), 'Welcome Back to Giulia BOT');
+          bot.telegram.sendMessage(
+            String(req.body.message.chat.id),
+            'Welcome Back to Giulia BOT'
+          );
           log(`user already in database`);
         }
         break;
       default:
-        datastore.createDocument(
-          process.env.APPWRITE_DATABASE_ID!,
-          process.env.APPWRITE_TABLE_MESSAGES_ID!,
-          ID.unique(),
-          {
-            chat: String(req.body.message.chat.id),
-            date: new Date().toISOString(),
-            message: req.body.message.text
-          }
-        )
-        console.log(req.body);
+        if (chat.total > 0) {
+          datastore.createDocument(
+            process.env.APPWRITE_DATABASE_ID!,
+            process.env.APPWRITE_TABLE_MESSAGES_ID!,
+            ID.unique(),
+            {
+              chat: chat.documents[0].$id,
+              date: new Date().toISOString(),
+              message: req.body.message.text,
+            }
+          );
+          log('add message to user chat');
+        } else {
+          error('No User Found');
+          bot.telegram.sendMessage(
+            String(req.body.message.chat.id),
+            'You need to initialize chat with /start command'
+          );
+        }
     }
 
     if (req.method === 'GET') {
       return res.send('Silicia - Giulia BOT - telegram gateway');
-    }   
+    }
   } catch (e: any) {
     error(JSON.stringify(e));
   }
