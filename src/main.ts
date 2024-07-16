@@ -76,10 +76,16 @@ export default async ({ req, res, log, error }: Context) => {
         }
         break;
       default:
-        bot.telegram.sendMessage(
-          req.body.message.chat.id,
-          req.body.message.text
-        );
+        datastore.createDocument(
+          process.env.APPWRITE_DATABASE_ID!,
+          process.env.APPWRITE_TABLE_IDENTITIES_ID!,
+          ID.unique(),
+          {
+            chat_id: String(req.body.message.chat.id),
+            date: new Date().toISOString(),
+            message: req.body.message.text
+          }
+        )
         console.log(req.body);
     }
 
