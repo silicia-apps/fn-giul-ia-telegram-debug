@@ -20,7 +20,7 @@ type Context = {
 
 export default async ({ req, res, log, error }: Context) => {
   try {
-    log(`input : ${req.body.message}`);
+    log(req.body.message);
     log('connect to Telegram Bot');
     const bot = new Telegraf(process.env.TELEGRAM_TOKEN!);
     log('connect to appwrite api');
