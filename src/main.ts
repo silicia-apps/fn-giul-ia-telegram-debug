@@ -46,9 +46,20 @@ export default async ({ req, res, log, error }: Context) => {
         if (chat.total === 0) {
           log('User not present');
           const new_user = {
-            memory: {},
+            emotionalState: { fear: 0 },
+            memory: [
+              { name: 'first_name_user', value: req.body.from.first_name },
+              { name: 'last_name_user', value: req.body.from.first_name },
+              { name: 'prefered_language_user', value: req.body.from.language_code },
+              { name: 'username_user', value: req.body.from.username }
+            ],
             name: req.body.message.from.username,
-            chats: [{ channel: 'telegram', chat_id: String(req.body.message.chat.id) }],
+            chats: [
+              {
+                channel: 'telegram',
+                chat_id: String(req.body.message.chat.id),
+              },
+            ],
           };
           log(`write new user`);
           log(JSON.stringify(new_user));
