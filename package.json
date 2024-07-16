@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "node-appwrite": "^12.0.1",
-    "telegram": "latest"
+    "telegraf": "^4.16.3"
   },
   "devDependencies": {
     "prettier": "^3.2.5"
