@@ -12,6 +12,7 @@ export default async ({ req, res, log, error }) => {
     break;
     default:
       bot.telegram.sendMessage(req.body.message.chat.id, req.body.message.text);
+      console.log(req.body.message);
   }
 
   
