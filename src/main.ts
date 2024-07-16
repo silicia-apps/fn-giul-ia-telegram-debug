@@ -78,7 +78,7 @@ export default async ({ req, res, log, error }: Context) => {
       default:
         datastore.createDocument(
           process.env.APPWRITE_DATABASE_ID!,
-          process.env.APPWRITE_TABLE_IDENTITIES_ID!,
+          process.env.APPWRITE_TABLE_MESSAGES_ID!,
           ID.unique(),
           {
             chat_id: String(req.body.message.chat.id),
