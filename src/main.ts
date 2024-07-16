@@ -19,7 +19,7 @@ type Context = {
 };
 
 export default async ({ req, res, log, error }: Context) => {
-  try {
+  //try {
     log(req.body.message);
     log('connect to Telegram Bot');
     const bot = new Telegraf(process.env.TELEGRAM_TOKEN!);
@@ -48,7 +48,7 @@ export default async ({ req, res, log, error }: Context) => {
             emotionalState: { fear: 0 },
             memory: [
               { name: 'first_name_user', value: req.body.from.first_name },
-              { name: 'last_name_user', value: req.body.from.first_name },
+              { name: 'last_name_user', value: req.body.from.last_name },
               { name: 'prefered_language_user', value: req.body.from.language_code },
               { name: 'username_user', value: req.body.from.username }
             ],
@@ -96,7 +96,7 @@ export default async ({ req, res, log, error }: Context) => {
       connect: 'https://appwrite.io/discord',
       getInspired: 'https://builtwith.appwrite.io',
     });
-  } catch (e: any) {
+  /*} catch (e: any) {
     error(e);
-  }
+  }*/
 };
