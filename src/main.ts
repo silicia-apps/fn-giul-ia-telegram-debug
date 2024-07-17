@@ -41,6 +41,12 @@ export default async ({ req, res, log, error }: Context) => {
 
     switch (req.body.message.text) {
       case '/start':
+        log('present the bot');
+        bot.telegram.sendMessage(
+          String(req.body.message.chat.id),
+          'Hello everyone! I am an AI under development, with learning and conversational abilities. To start interacting with me, type the magic word. 😉 What is the magic word?'
+        );
+      case 'start@imitation@game':
         log('Registrazione Bot');
         if (chat.total === 0) {
           log('User not present');
@@ -80,7 +86,7 @@ export default async ({ req, res, log, error }: Context) => {
           log(`user created`);
           bot.telegram.sendMessage(
             String(req.body.message.chat.id),
-            'Welcome to Giulia BOT'
+            "Welcome to Giulia BOT NowWelcome! 🎉 You managed to say the magic word and now we can finally start interacting. 🤖 If you're curious to see what commands I can execute, visit t.me/giul_ia_actions_bot, while if you want to take a look at my thought process, I'm waiting for you at t.me/giul_ia_think_bot. To interact with me, just write in this chat! 😉 Up until now, you've been shown prerendered text, now the magic happens."
           );
         } else {
           bot.telegram.sendMessage(
@@ -107,7 +113,7 @@ export default async ({ req, res, log, error }: Context) => {
           error('No User Found');
           bot.telegram.sendMessage(
             String(req.body.message.chat.id),
-            'You need to initialize chat with /start command'
+            "i'm curious to get to know you, but to interact with you, you'll need to say the magic word! 😉 What are you waiting for? 😄"
           );
         }
     }
