@@ -46,6 +46,7 @@ export default async ({ req, res, log, error }: Context) => {
           String(req.body.message.chat.id),
           'Hello everyone! I am an AI under development, with learning and conversational abilities. To start interacting with me, type the magic word. 😉 What is the magic word?'
         );
+        break;
       case 'start@imitation@game':
         log('Registrazione Bot');
         if (chat.total === 0) {
