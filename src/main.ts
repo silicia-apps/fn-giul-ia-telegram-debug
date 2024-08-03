@@ -80,14 +80,14 @@ export default async ({ req, res, log, error }: Context) => {
           log(JSON.stringify(new_user));
           await datastore.createDocument(
             process.env.APPWRITE_DATABASE_ID!,
-            process.env.APPWRITE_TABLE_IDENTITIES_ID!,
+            process.env.APPWRITE_TABLE_PROFILES_ID!,
             ID.unique(),
             new_user
           );
           log(`user created`);
           bot.telegram.sendMessage(
             String(req.body.message.chat.id),
-            "Welcome! 🎉 You managed to say the magic word and now we can finally start interacting. 🤖 If you're curious to see what commands I can execute, visit t.me/giul_ia_actions_bot, while if you want to take a look at my thought process, I'm waiting for you at t.me/giul_ia_think_bot. To interact with me, just write in this chat! 😉 Up until now, you've been shown prerendered text, now the magic happens."
+            "You managed to say the magic word and now we can finally start interacting. 🤖 If you're curious to see what commands I can execute, visit t.me/giul_ia_actions_bot, while if you want to take a look at my thought process, I'm waiting for you at t.me/giul_ia_think_bot. To interact with me, just write in this chat! 😉 Up until now, you've been shown prerendered text, now the magic happens."
           );
         } else {
           bot.telegram.sendMessage(
