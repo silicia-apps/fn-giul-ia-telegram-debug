@@ -111,10 +111,10 @@ export default async ({ req, res, log, error }: Context) => {
               ID.unique(),
               {
                 chat: chat.documents[0].$id,
-                date: new Date().toISOString(),
                 message: req.body.message.text,
               }
             );
+
             log('add message to user chat');
           } else {
             error('No User Found');
