@@ -28,7 +28,7 @@ export default async ({ req, res, log, error }: Context) => {
       const bot = new Telegraf(process.env.TELEGRAM_TOKEN!);
       log('connect to appwrite api');
       const client = new Client()
-        .setEndpoint(process.env.APPWRITE_ENDPOINT!);
+        .setEndpoint(process.env.APPWRITE_ENDPOINT!)
         .setProject(process.env.APPWRITE_PROJECT_ID!)
         .setKey(process.env.APPWRITE_API_KEY!);
       let datastore = new Databases(client);
