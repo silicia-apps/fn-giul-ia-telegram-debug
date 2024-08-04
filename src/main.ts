@@ -55,7 +55,7 @@ export default async ({ req, res, log, error }: Context) => {
           if (chat.total === 0) {
             log('User not present');
             const new_user = {
-              emotional_state: { fear: 0 },
+              es: { fear: 0 },
               memories: [
                 {
                   name: 'first_name_user',
