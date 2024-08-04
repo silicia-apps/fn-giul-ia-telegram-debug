@@ -19,6 +19,7 @@ type Context = {
 };
 
 export default async ({ req, res, log, error }: Context) => {
+  log(JSON.stringify(req));
   try {
     if (req.body.key === process.env.APPWRITE_API_KEY!) {
       log(req.body.message);
@@ -126,7 +127,7 @@ export default async ({ req, res, log, error }: Context) => {
       error('api key not is valid');
     }
     if (req.method === 'GET') {
-      return res.send('Silicia - Giulia BOT - telegram gateway');
+      return res.send('Silicia - Giul-IA BOT - telegram gateway');
     }
   } catch (e: any) {
     error(JSON.stringify(e));
