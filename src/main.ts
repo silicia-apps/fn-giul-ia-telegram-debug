@@ -19,9 +19,9 @@ type Context = {
 };
 
 export default async ({ req, res, log, error }: Context) => {
-  log(JSON.stringify(req));
+  log(req.headers['x-Telegram-bot-api-secret-token']);
   try {
-    if (req.body.key === process.env.APPWRITE_API_KEY!) {
+    if (req.headers['x-Telegram-bot-api-secret-token'] === process.env.APPWRITE_API_KEY!) {
       log(req.body.message);
       log('connect to Telegram Bot');
       const bot = new Telegraf(process.env.TELEGRAM_TOKEN!);
