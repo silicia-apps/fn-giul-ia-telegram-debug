@@ -58,19 +58,19 @@ export default async ({ req, res, log, error }: Context) => {
               es: { fear: 0 },
               ltm: [
                 {
-                  name: 'first_name_user',
+                  key: 'first_name_user',
                   value: req.body.message.from.first_name,
                 },
                 {
-                  name: 'last_name_user',
+                  key: 'last_name_user',
                   value: req.body.message.from.last_name,
                 },
                 {
-                  name: 'prefered_language_user',
+                  key: 'prefered_language_user',
                   value: req.body.message.from.language_code,
                 },
                 {
-                  name: 'username_user',
+                  key: 'username_user',
                   value: req.body.message.from.username,
                 },
               ],
