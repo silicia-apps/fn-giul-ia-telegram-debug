@@ -56,7 +56,7 @@ export default async ({ req, res, log, error }: Context) => {
             log('User not present');
             const new_user = {
               es: { fear: 0 },
-              memories: [
+              ltm: [
                 {
                   name: 'first_name_user',
                   value: req.body.message.from.first_name,
