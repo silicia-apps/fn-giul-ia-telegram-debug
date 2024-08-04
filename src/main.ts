@@ -122,12 +122,11 @@ export default async ({ req, res, log, error }: Context) => {
             );
           }
       }
-
-      if (req.method === 'GET') {
-        return res.send('Silicia - Giulia BOT - telegram gateway');
-      }
     } else {
       error('api key not is valid');
+    }
+    if (req.method === 'GET') {
+      return res.send('Silicia - Giulia BOT - telegram gateway');
     }
   } catch (e: any) {
     error(JSON.stringify(e));
