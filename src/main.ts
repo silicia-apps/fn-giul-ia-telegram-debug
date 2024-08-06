@@ -42,12 +42,9 @@ export default async ({ req, res, log, error }: Context) => {
       switch (req.body.message.text) {
         case '/start':
           log('present the bot');
-          bot.telegram.sendMessage(
-            String(req.body.message.chat.id),
-            "Welcome to the chat where my thoughts come to life! Get ready to peek into my mind and find out what's going on in my head! 🎉 It's going to be an exciting journey! 😉"
-          );
+          
           log(`save chat id in profile`);
-          datastore.updateDocument(
+          await datastore.updateDocument(
             process.env.APPWRITE_DATABASE_ID!,
             process.env.APPWRITE_TABLE_PROFILES_ID!,
             chat.documents[0].$id,
