@@ -46,7 +46,7 @@ export default async ({ req, res, log, error }: Context) => {
           log(`save chat id in profile`);
           await datastore.updateDocument(
             process.env.APPWRITE_DATABASE_ID!,
-            process.env.APPWRITE_TABLE_PROFILES_ID!,
+            process.env.APPWRITE_TABLE_CHATS_ID!,
             chat.documents[0].$id,
             { chat_id_thought: req.body.message.chat.id }
           );
