@@ -1,7 +1,7 @@
 import { Client, Databases, Query, ID } from 'node-appwrite';
 import { Telegraf } from 'telegraf';
 
-import * as process from './env.js';
+//import * as process from './env.js';
 
 function log(text: string) {
   console.log(text);
@@ -76,7 +76,7 @@ export default async ({ req, res, log, error }: Context) => {
     } else if (req.body.message) {
         log('connect to Telegram Bot');
         log(`sent thought to telegram channel`);
-        const bot = new Telegraf(process.env.TELEGRAM_TOKEN);
+        const bot = new Telegraf(process.env.TELEGRAM_TOKEN!);
         console.log(String(req.body.chat.chat_id_thought));
         console.log(req.body.message);
         bot.telegram.sendMessage(
