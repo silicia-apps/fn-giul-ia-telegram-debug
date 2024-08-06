@@ -48,7 +48,7 @@ export default async ({ req, res, log, error }: Context) => {
             process.env.APPWRITE_DATABASE_ID!,
             process.env.APPWRITE_TABLE_CHATS_ID!,
             chat.documents[0].$id,
-            { chat_id_thoughts: req.body.message.chat.id }
+            { chat_id_thoughts: String(req.body.message.chat.id) }
           );
           bot.telegram.sendMessage(
             String(req.body.message.chat.id),
