@@ -14,7 +14,7 @@ type Context = {
   req: any;
   res: any;
   log: (msg: string) => void;
-  error: (msg: string) => void;
+  error: (msg: string) => void; 
 };
 
 export default async ({ req, res, log, error }: Context) => {
