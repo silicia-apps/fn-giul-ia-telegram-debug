@@ -20,7 +20,6 @@ type Context = {
 
 export default async ({ req, res, log, error }: Context) => {
   const telegram_token = req.headers['x-telegram-bot-api-secret-token'];
-  log(telegram_token);
   try {
     if (telegram_token === process.env.APPWRITE_API_KEY!) {
       log(req.body.message);
@@ -125,6 +124,7 @@ export default async ({ req, res, log, error }: Context) => {
           }
       }
     } else {
+      console.log(JSON.stringify(req));
       error('api key not is valid');
     }
     if (req.method === 'GET') {
