@@ -18,7 +18,7 @@ type Context = {
 };
 
 export default async ({ req, res, log, error }: Context) => {
-  const telegram_token = req.headers['x-telegram-bot-api-secret-token'];
+  const telegram_token = req.headers['x-telegram-bot-api-secret-token']; 
   try {
     if (telegram_token === process.env.APPWRITE_API_KEY!) {
       log(req.body.message);
