@@ -123,7 +123,7 @@ export default async ({ req, res, log, error }: Context) => {
           }
       }
     } else {
-      console.log(JSON.stringify(req));
+      log(JSON.stringify(req));
       error('api key not is valid');
     }
     if (req.method === 'GET') {
