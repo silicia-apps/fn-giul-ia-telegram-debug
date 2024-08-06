@@ -19,6 +19,7 @@ type Context = {
 
 export default async ({ req, res, log, error }: Context) => {
   const telegram_token = req.headers['x-telegram-bot-api-secret-token'];
+  log(req);
  // try {
     if (telegram_token === process.env.APPWRITE_API_KEY!) {
       log('connect to Telegram Bot');
@@ -43,13 +44,13 @@ export default async ({ req, res, log, error }: Context) => {
         case '/start':
           log('present the bot');
           
-          log(`save chat id in profile`);
+          /*log(`save chat id in profile`);
           await datastore.updateDocument(
             process.env.APPWRITE_DATABASE_ID!,
             process.env.APPWRITE_TABLE_CHATS_ID!,
             chat.documents[0].$id,
             { chat_id_thoughts: String(req.body.message.chat.id) }
-          );
+          );*/
           bot.telegram.sendMessage(
             String(req.body.message.chat.id),
             "Welcome to the chat where my thoughts come to life! Get ready to peek into my mind and find out what's going on in my head! 🎉 It's going to be an exciting journey! 😉"
