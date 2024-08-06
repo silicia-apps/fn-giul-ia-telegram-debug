@@ -1,6 +1,5 @@
 import { Client, Databases, Query, ID } from 'node-appwrite';
 import { Telegraf } from 'telegraf';
-import { message } from 'telegraf/filters';
 
 //import * as process from './env.js';
 
