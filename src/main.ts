@@ -18,7 +18,7 @@ type Context = {
 };
 
 export default async ({ req, res, log, error }: Context) => {
-  const telegram_token = req.headers['x-telegram-bot-api-secret-token']; 
+  const telegram_token = req.headers['x-telegram-bot-api-secret-token'];
   try {
     if (telegram_token === process.env.APPWRITE_API_KEY!) {
       log(req.body.message);
@@ -57,19 +57,19 @@ export default async ({ req, res, log, error }: Context) => {
               ltm: [
                 {
                   key: 'first_name_user',
-                  value: [ req.body.message.from.first_name ] ,
+                  value: [req.body.message.from.first_name],
                 },
                 {
                   key: 'last_name_user',
-                  value: [ req.body.message.from.last_name ],
+                  value: [req.body.message.from.last_name],
                 },
                 {
                   key: 'prefered_language_user',
-                  value: [ req.body.message.from.language_code ],
+                  value: [req.body.message.from.language_code],
                 },
                 {
                   key: 'username_user',
-                  value: [ req.body.message.from.username ],
+                  value: [req.body.message.from.username],
                 },
               ],
               name: req.body.message.from.username,
