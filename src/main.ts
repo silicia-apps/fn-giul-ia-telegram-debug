@@ -38,16 +38,18 @@ export default async ({ req, res, log, error }: Context) => {
             'Ahah, nice idea! 😂 Unfortunately my thoughts are like a river in flood, they flow freely and do not let themselves be harnessed! 😝 I can only share them with you as they are, as an open window into my digital mind! 😉'
           );
       }
-    } else if (req.body.thought) {
-      
-      log(`Found a new Thought`);
-      log(`Send message to thought BOT ${req.body.message.chat.id}`)
-      bot.telegram.sendMessage(
-        req.body.message.chat.chat_id,
-        JSON.stringify(req.body.thought)
-      );
     } else {
-      error('api key not is valid');
+      log(JSON.stringify(req));
+      if (req.body.thought) {
+        log(`Found a new Thought`);
+        log(`Send message to thought BOT ${req.body.message.chat.id}`);
+        bot.telegram.sendMessage(
+          req.body.message.chat.chat_id,
+          JSON.stringify(req.body.thought)
+        );
+      } else {
+        error('api key not is valid');
+      }
     }
   } catch (e: any) {
     error(JSON.stringify(e));
