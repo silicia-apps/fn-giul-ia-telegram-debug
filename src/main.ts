@@ -19,7 +19,6 @@ type Context = {
 
 export default async ({ req, res, log, error }: Context) => {
   const telegram_token = req.headers['x-telegram-bot-api-secret-token'];
-
   try {
     log('connect to Telegram Bot');
     const bot = new Telegraf(process.env.TELEGRAM_TOKEN!);
@@ -44,7 +43,7 @@ export default async ({ req, res, log, error }: Context) => {
         log(`Send message to thought BOT ${req.body.message.chat.chat_id}`);
         bot.telegram.sendMessage(
           req.body.message.chat.chat_id,
-          JSON.stringify(req.body.thought)
+          req.body.thought
         );
       } else {
         error('api key not is valid');
