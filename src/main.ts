@@ -121,12 +121,11 @@ export default async ({ req, res, log, error }: Context) => {
     } else if (req.body.thought) {
       const body = JSON.parse(req.body);
       log(`Found a new Thought`);
-      log(`Get Message index`);
-
       log(JSON.stringify(req));
+      log(`Send message to thought BOT ${body.message.chat.id}`)
       bot.telegram.sendMessage(
-        body.tought.message.chat.chat_id,
-        JSON.stringify(body.tought)
+        body.message.chat.chat_id,
+        JSON.stringify(body.thought)
       );
     } else {
       error('api key not is valid');
