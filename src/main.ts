@@ -1,10 +1,10 @@
 import { Client, Databases, Query, Models } from 'node-appwrite';
 import { Telegraf } from 'telegraf';
 
-// for local development
+/* for local development
 import * as process from './env.js';
 
-/*function log(text: string) {
+function log(text: string) {
   console.log(text);
 }
 function error(text: string) {
