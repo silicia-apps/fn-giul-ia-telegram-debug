@@ -1,14 +1,15 @@
 import { Client, Databases, Query, ID } from 'node-appwrite';
 import { Telegraf } from 'telegraf';
 
-//import * as process from './env.js';
+// for local development
+/*import * as process from './env.js';
 
 function log(text: string) {
   console.log(text);
 }
 function error(text: string) {
   console.error(text);
-}
+}*/
 
 type Context = {
   req: any;
@@ -39,7 +40,7 @@ export default async ({ req, res, log, error }: Context) => {
           );
       }
     } else if (req.body.message) {
-      bot.telegram.sendMessage(String(req.body.chat.chat_id), req.body.message);
+      bot.telegram.sendMessage(String(req.body.chat.chatid), req.body.message);
     } else {
       error('api key not is valid');
     }
