@@ -39,7 +39,6 @@ export default async ({ req, res, log, error }: Context) => {
           );
       }
     } else {
-      log(JSON.stringify(req));
       if (req.body.thought) {
         log(`Found a new Thought`);
         log(`Send message to thought BOT ${req.body.message.chat.id}`);
