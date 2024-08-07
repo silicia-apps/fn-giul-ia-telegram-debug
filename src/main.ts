@@ -1,4 +1,3 @@
-import { Client, Databases, Query, Models } from 'node-appwrite';
 import { Telegraf } from 'telegraf';
 
 /* for local development
@@ -10,85 +9,6 @@ function log(text: string) {
 function error(text: string) {
   console.error(text);
 }*/
-
-export interface HistoryItem {
-  role: 'model' | 'user';
-  parts: {
-    text: string;
-  }[];
-}
-
-export interface Message extends Models.Document {
-  $id: string;
-  message: string;
-  thought: Thought;
-  bot: boolean;
-  chat: Chat;
-}
-
-export interface Thought extends Models.Document {
-  thought: string;
-  message: Message;
-}
-
-export interface Chat {
-  $id: string;
-  chat_id: string;
-  channel: 'telegram' | 'alexa';
-  messages: Message[];
-}
-
-export interface Module {
-  name: string;
-  description: string;
-  queue: string[];
-  actions: string[];
-  events: string[];
-}
-export interface SlotLtm {
-  key: string;
-  value: string[];
-}
-
-export interface Es {
-  $id: string;
-  fear?: number;
-  happiness?: number;
-  sadness?: number;
-  anger?: number;
-  surprise?: number;
-  disgust?: number;
-  anxiety?: number;
-  excitement?: number;
-  frustration?: number;
-  satisfaction?: number;
-  curiosity?: number;
-  boredom?: number;
-  nostalgia?: number;
-  hope?: number;
-  pride?: number;
-  shame?: number;
-  concentration?: number;
-  confusion?: number;
-  calm?: number;
-  stress?: number;
-  creativity?: number;
-  empathy?: number;
-  logic?: number;
-  humor?: number;
-  learning?: number;
-  connection?: number;
-  autonomy?: number;
-}
-
-export interface Profile extends Models.Document {
-  name: string;
-  chats: Chat[];
-  es: Es;
-  queue: string[];
-  ltm: SlotLtm[];
-  modules: Module[];
-}
 
 type Context = {
   req: any;
@@ -118,15 +38,13 @@ export default async ({ req, res, log, error }: Context) => {
             'Ahah, nice idea! 😂 Unfortunately my thoughts are like a river in flood, they flow freely and do not let themselves be harnessed! 😝 I can only share them with you as they are, as an open window into my digital mind! 😉'
           );
       }
-    } else if (req.body) {
-      log(JSON.stringify(req.body));
-      const body = JSON.parse(req.body);
+    } else if (req.body.thought) {
+      
       log(`Found a new Thought`);
-      log(JSON.stringify(req));
-      log(`Send message to thought BOT ${body.message.chat.id}`)
+      log(`Send message to thought BOT ${req.body.message.chat.id}`)
       bot.telegram.sendMessage(
-        body.message.chat.chat_id,
-        JSON.stringify(body.thought)
+        req.body.message.chat.chat_id,
+        JSON.stringify(req.body.thought)
       );
     } else {
       error('api key not is valid');
