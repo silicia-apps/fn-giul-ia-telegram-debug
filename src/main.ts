@@ -118,7 +118,8 @@ export default async ({ req, res, log, error }: Context) => {
             'Ahah, nice idea! 😂 Unfortunately my thoughts are like a river in flood, they flow freely and do not let themselves be harnessed! 😝 I can only share them with you as they are, as an open window into my digital mind! 😉'
           );
       }
-    } else if (req.body.thought) {
+    } else if (req.body) {
+      log(JSON.stringify(req.body));
       const body = JSON.parse(req.body);
       log(`Found a new Thought`);
       log(JSON.stringify(req));
