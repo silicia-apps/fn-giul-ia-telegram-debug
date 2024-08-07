@@ -40,6 +40,7 @@ export default async ({ req, res, log, error }: Context) => {
           );
       }
     } else if (req.body.message) {
+      log(JSON.stringify(req));
       bot.telegram.sendMessage(String(req.body.chat.chatid), req.body.message);
     } else {
       error('api key not is valid');
