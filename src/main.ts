@@ -55,7 +55,7 @@ export default async ({ req, res, log, error }: Context) => {
           String(req.body.thought.chat.chatid),
           JSON.stringify(req.body.action)
         );
-      } else if (req.body.action) {
+      } else if (req.body.thought) {
         log(`Found a new Thought`);
         log(
           `Send message to thought BOT at chatid ${req.body.thought.chat.chatid}`
