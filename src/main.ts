@@ -39,7 +39,7 @@ export default async ({ req, res, log, error }: Context) => {
           break;
         default:
           bot.telegram.sendMessage(
-            String(req.body.thought.message.chat.id),
+            String(req.body.message.chat.id),
             'Ahah, nice idea! 😂 Unfortunately my thoughts are like a river in flood, they flow freely and do not let themselves be harnessed! 😝 I can only share them with you as they are, as an open window into my digital mind! 😉'
           );
       }
@@ -62,7 +62,7 @@ export default async ({ req, res, log, error }: Context) => {
         );
         const bot = new Telegraf(process.env.TELEGRAM_TOKEN_TOUGHTS!);
         bot.telegram.sendMessage(
-          String(req.body.thought.chat.chatid),
+          String(req.body.message.chat.chatid),
           req.body.thought
         );
       } else {
