@@ -74,6 +74,6 @@ export default async ({ req, res, log, error }: Context) => {
     }
     return res.empty();
   } catch (e: any) {
-    error(JSON.stringify(e));
+    error(String(e));
   }
 };
