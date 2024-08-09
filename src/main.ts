@@ -53,7 +53,7 @@ export default async ({ req, res, log, error }: Context) => {
         log(`sent action to telegram channel`);
         bot.telegram.sendMessage(
           String(req.body.thought.chat.chatid),
-          JSON.stringify(req.body.action)
+          req.body.action
         );
       } else if (req.body.thought) {
         log(`Found a new Thought`);
