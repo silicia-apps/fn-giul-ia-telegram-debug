@@ -18,11 +18,17 @@ type Context = {
 };
 
 export default async ({ req, res, log, error }: Context) => {
+  function debug(text: string) {
+    if (process.env.DEBUG!.toLowerCase() === 'true') {
+      error(`debug: ${text}`);
+    }
+  }
+  debug(`request: ${JSON.stringify(req.body)}`);
   const telegram_token = req.headers['x-telegram-bot-api-secret-token'];
   try {
     log('connect to Telegram Bot');
-    const bot = new Telegraf(process.env.TELEGRAM_TOKEN!);
     if (telegram_token === process.env.APPWRITE_API_KEY!) {
+      const bot = new Telegraf(process.env.TELEGRAM_TOKEN_TOUGHTS!);
       switch (req.body.message.text) {
         case '/start':
           log('present the bot');
@@ -40,8 +46,10 @@ export default async ({ req, res, log, error }: Context) => {
     } else {
       if (req.body.action) {
         log(`Found a new Action`);
-        log(`Send message to Action BOT at chatid ${req.body.thought.chat.chatid}`);
-        const bot = new Telegraf(process.env.TELEGRAM_TOKEN_ACTION!);
+        log(
+          `Send message to Action BOT at chatid ${req.body.thought.chat.chatid}`
+        );
+        const bot = new Telegraf(process.env.TELEGRAM_TOKEN_ACTIONS!);
         log(`sent action to telegram channel`);
         bot.telegram.sendMessage(
           String(req.body.thought.chat.chatid),
@@ -49,7 +57,10 @@ export default async ({ req, res, log, error }: Context) => {
         );
       } else if (req.body.action) {
         log(`Found a new Thought`);
-        log(`Send message to thought BOT at chatid ${req.body.thought.chat.chatid}`);
+        log(
+          `Send message to thought BOT at chatid ${req.body.thought.chat.chatid}`
+        );
+        const bot = new Telegraf(process.env.TELEGRAM_TOKEN_TOUGHTS!);
         bot.telegram.sendMessage(
           String(req.body.thought.chat.chatid),
           req.body.thought
