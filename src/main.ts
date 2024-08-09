@@ -28,7 +28,7 @@ export default async ({ req, res, log, error }: Context) => {
   try {
     log('connect to Telegram Bot');
     if (telegram_token === process.env.APPWRITE_API_KEY!) {
-      const bot = new Telegraf(process.env.TELEGRAM_TOKEN_TOUGHTS!);
+      const bot = new Telegraf(process.env.TELEGRAM_TOKEN_THOUGHTS!);
       switch (req.body.message.text) {
         case '/start':
           log('present the bot');
@@ -60,7 +60,7 @@ export default async ({ req, res, log, error }: Context) => {
         log(
           `Send message to thought BOT at chatid ${req.body.message.chat.chatid}`
         );
-        const bot = new Telegraf(process.env.TELEGRAM_TOKEN_TOUGHTS!);
+        const bot = new Telegraf(process.env.TELEGRAM_TOKEN_THOUGHTS!);
         bot.telegram.sendMessage(
           String(req.body.message.chat.chatid),
           req.body.thought
