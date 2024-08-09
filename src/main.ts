@@ -58,7 +58,7 @@ export default async ({ req, res, log, error }: Context) => {
       } else if (req.body.thought) {
         log(`Found a new Thought`);
         log(
-          `Send message to thought BOT at chatid ${req.body.thought.chat.chatid}`
+          `Send message to thought BOT at chatid ${req.body.message.chat.chatid}`
         );
         const bot = new Telegraf(process.env.TELEGRAM_TOKEN_TOUGHTS!);
         bot.telegram.sendMessage(
