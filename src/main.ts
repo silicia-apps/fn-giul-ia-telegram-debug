@@ -38,22 +38,31 @@ export default async ({ req, res, log, error }: Context) => {
           );
       }
     } else {
-      if (req.body.thought) {
-        log(`Found a new Thought`);
-        log(`Send message to thought BOT ${req.body.message.chat.chat_id}`);
+      if (req.body.action) {
+        log(`Found a new Action`);
+        log(`Send message to Action BOT at chatid ${req.body.thought.chat.chatid}`);
+        const bot = new Telegraf(process.env.TELEGRAM_TOKEN_ACTION!);
+        log(`sent action to telegram channel`);
         bot.telegram.sendMessage(
-          req.body.message.chat.chat_id,
+          String(req.body.thought.chat.chatid),
+          JSON.stringify(req.body.action)
+        );
+      } else if (req.body.action) {
+        log(`Found a new Thought`);
+        log(`Send message to thought BOT at chatid ${req.body.thought.chat.chatid}`);
+        bot.telegram.sendMessage(
+          String(req.body.thought.chat.chatid),
           req.body.thought
         );
       } else {
         error('api key not is valid');
       }
     }
+    if (req.method === 'GET') {
+      return res.send('Silicia - Giul-IA BOT - telegram gateway thought debug');
+    }
+    return res.empty();
   } catch (e: any) {
     error(JSON.stringify(e));
   }
-  if (req.method === 'GET') {
-    return res.send('Silicia - Giul-IA BOT - telegram gateway thought debug');
-  }
-  return res.empty();
 };
